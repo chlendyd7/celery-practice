@@ -1,10 +1,9 @@
 version: '3.8'
 
-service:
-
+services:
   django:
     container_name: django
-    build: 
+    build:
       context: ./dcelery
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -13,7 +12,7 @@ service:
       - 8001:8000
     environment:
       - DEBUG=1
-      - SECRET_KEY=ANDSJFA913023223DSFASF
+      - SECRET_KEY=0930jd30j9jd09j09j109fj01j9f
       - ALLOWED_HOSTS=localhost,127.0.0.1
-      
+
 

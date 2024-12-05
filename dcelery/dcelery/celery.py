@@ -8,3 +8,6 @@ app.config_from_object("django.conf:settings", namespace="CELERY")
 @app.task
 def add_numbers():
     return
+
+# 모든 모듈에 들어가서 celery task를 찾음
+app.autodiscover_tasks()

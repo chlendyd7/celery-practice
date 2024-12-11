@@ -11,7 +11,7 @@ app.config_from_object("django.conf:settings", namespace="CELERY")
 app.conf.broker_transport_options = {
     'priority_steps': list(range(10)),
     'sep':':',
-    'queue_order_strategy':'prioirty',
+    'queue_order_strategy':'priority',
 }
 # 모든 모듈에 들어가서 celery task를 찾음
 app.autodiscover_tasks()

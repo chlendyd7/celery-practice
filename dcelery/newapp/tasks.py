@@ -1,6 +1,6 @@
 from celery import shared_task
 
-
 @shared_task
 def sharedtask():
-    return
+    # 작업 내용
+    return "Task Completed"

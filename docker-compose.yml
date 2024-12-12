@@ -7,16 +7,14 @@ services:
     ports:
       - 5555:5555
     environment:
-      - CELERY_BROKER_URL=amqp://guest:guest@rabitmq:5672/
-
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672/
 
   rabbitmq:
     image: rabbitmq:management
     container_name: rabbitmq
     ports:
-      - 5672:5672
-      - 15672:15672
-    
+     - 5672:5672
+     - 15672:15672
 
   redis:
     image: redis:7.0.11-alpine
@@ -36,12 +34,12 @@ services:
       - ALLOWED_HOSTS=localhost,127.0.0.1
     depends_on:
       - redis
-
+  
   celery:
-    container_name: celery
+    container_name: celery1
     build:
       context: ./dcelery
-    command: celery --app=dcelery worker -l INFO -Q tasks
+    command: celery --app=dcelery worker -l INFO -Q tasks,dead_letter -E -B
     volumes:
       - ./dcelery:/usr/src/app/
     environment:
@@ -52,13 +50,13 @@ services:
       - redis
       - django
       - rabbitmq
-
+  
   # celery2:
   #   container_name: celery2
   #   build:
   #     context: ./celeryworker
   #     dockerfile: Dockerfile
-  #   command: celery -A celerytask worker --loglevel=INFO -Q queue2 
+  #   command: celery -A celerytask worker --loglevel=INFO -Q queue2
   #   volumes:
   #     - ./celeryworker:/usr/src/app/
   #   depends_on:

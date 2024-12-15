@@ -9,7 +9,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dcelery.settings')
 app = Celery("dcelery")
 app.config_from_object("django.conf:settings", namespace="CELERY")
 sentry_dsn = "https://74a9d0cae2746017d251dc7f1c324d0d@o4508471159554048.ingest.de.sentry.io/4508471292330064"
-sentry_sdk.init(dsn=sentry_sdk, integrations=[CeleryIntegration()])
+sentry_sdk.init(dsn=sentry_dsn, integrations=[CeleryIntegration()])
 
 # app.conf.task_routes = {
 #     'newapp.tasks.task1':{'queue':'queue1'},

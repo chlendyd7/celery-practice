@@ -39,6 +39,7 @@ services:
     container_name: celery1
     build:
       context: ./dcelery
+    # B는 비트, 샐러리 E는 ㅇ플래그나 이벤트 플래그
     command: celery --app=dcelery worker -l INFO -Q tasks,dead_letter -E -B
     volumes:
       - ./dcelery:/usr/src/app/
